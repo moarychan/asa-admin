@@ -28,3 +28,12 @@ Then, you can run this Azure Spring Apps Admin by one click button:
 <img src="https://user-images.githubusercontent.com/58474919/236122963-8c0857bb-3822-4485-892a-445fa33f1612.png" alt="Deploy to Azure Spring Apps" width="200px" data-linktype="relative-path">
 </a>
 
+After finish deployment, you will redirect the application endpoint, then to do oauth2 login.
+
+If you meet below error, please refer [Add a redirect URI](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri) to add a redirect url:
+
+![](assets/aad-login.png)
+
+After everything deploy successful, managing and monitoring your apps via Azure Spring Apps Admin.
+
+![](assets/dashboard.png)
