@@ -1,4 +1,4 @@
-[![Java CI with Maven](https://github.com/fangjian0423/asa-admin/blob/main/.github/workflows/maven.yml/badge.svg)](https://github.com/fangjian0423/asa-admin/blob/main/.github/workflows/maven.yml)
+[![Java CI with Maven](https://github.com/fangjian0423/asa-admin/actions/workflows/maven.yml/badge.svg)](https://github.com/fangjian0423/asa-admin/actions/workflows/maven.yml)
 
 # Introduction - Azure Spring Apps Admin
 
