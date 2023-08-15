@@ -1,0 +1,37 @@
+spring:
+  boot:
+    admin:
+      ui:
+        brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
+        title: Azure Spring Apps Admin
+        theme:
+          background-enabled: false
+          color: "#0078D4"
+        external-views:
+          - label: Azure Spring Apps
+            url: https://learn.microsoft.com/azure/spring-apps/overview
+        favicon: assets/img/azure-favicon.png
+        favicon-danger: assets/img/azure-favicon.png
+        login-icon: assets/img/10370-icon-service-Azure-Spring-Apps.svg
+      discovery:
+        ignored-services: eureka-0,eureka-1,EUREKA-0,EUREKA-1
+  cloud:
+    azure:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: ${AAD_CLIENT_ID}
+          client-secret: ${AAD_CLIENT_SECRET}
+          profile:
+            tenant-id: ${AAD_TENANT_ID}
+  thymeleaf:
+    check-template-location: false
+  application:
+    name: asa-spring-boot-admin-server
+
+server.port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
