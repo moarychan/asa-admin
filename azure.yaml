@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: asa-spring-boot-admin
+metadata:
+  template: asa-spring-boot-admin@0.0.1-beta
+services:
+  sb-admin:
+    project: ./
+    host: springapp
+    language: java
