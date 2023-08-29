@@ -18,9 +18,9 @@ To deploy Spring Boot Admin to Azure Spring Apps using the Azure Spring Apps but
 
 - An Azure subscription
 - An Azure AD administrative roles user
-- Azure Service Principal client id to enable Azure Active Directory
-- Azure Service Principal client secret to enable Azure Active Directory
-- Azure Service Principal tenant id to enable Azure Active Directory
+- Azure Service Principal client id to enable Azure Active Directory - Adding AAD_CLIENT_ID environment variable
+- Azure Service Principal client secret to enable Azure Active Directory - Adding AAD_CLIENT_SECRET environment variable
+- Azure Service Principal tenant id to enable Azure Active Directory - Adding AAD_TENANT_ID environment variable
 
 Then, you can run this Azure Spring Apps Admin by one click button:
 
