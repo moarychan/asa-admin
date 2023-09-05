@@ -40,3 +40,5 @@ management:
     web:
       exposure:
         include: info,health
+
+fully_qualified_domain_name: ${FULLY_QUALIFIED_DOMAIN_NAME:http://localhost:8080}

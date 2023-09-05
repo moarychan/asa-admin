@@ -3,11 +3,13 @@ package com.azure.spring.asa.component.admin.autoconfigure;
 import com.azure.spring.asa.component.admin.web.LoginController;
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import de.codecentric.boot.admin.server.ui.config.AdminServerUiProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -19,7 +21,17 @@ import javax.ws.rs.HttpMethod;
 public class SecurityAutoConfiguration {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, AdminServerProperties adminServer) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   AdminServerProperties adminServer,
+                                                   ClientRegistrationRepository repo,
+                                                   @Value("${fully_qualified_domain_name}") String fqdn) throws Exception {
+        OidcClientInitiatedLogoutSuccessHandler logoutSuccessHandler =
+            new OidcClientInitiatedLogoutSuccessHandler(repo);
+        StringBuilder contextPath = new StringBuilder(fqdn);
+        if (contextPath.charAt(contextPath.length() - 1) == '/') {
+            contextPath.deleteCharAt(contextPath.length() - 1);
+        }
+        logoutSuccessHandler.setPostLogoutRedirectUri(contextPath + adminServer.path("/login_oauth2") + "?logoutSuccess=1");
         http.authorizeRequests(
                 (authorizeRequests) ->
                     authorizeRequests.antMatchers(adminServer.path("/assets/**")).permitAll()
@@ -31,7 +43,7 @@ public class SecurityAutoConfiguration {
                     login.defaultSuccessUrl(adminServer.path("/"), true)
                          .authorizationEndpoint(authorization -> authorization.baseUri(adminServer.path("/oauth2/authorization")))
                          .loginPage(adminServer.path("/login_oauth2"))
-            ).logout((logout) -> logout.logoutUrl(adminServer.path("/logout")).logoutSuccessUrl(adminServer.path("/login_oauth2") + "?logoutSuccess=1"))
+            ).logout((logout) -> logout.logoutUrl(adminServer.path("/logout")).logoutSuccessHandler(logoutSuccessHandler))
             .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                                 .ignoringRequestMatchers(
                                     new AntPathRequestMatcher(adminServer.path("/instances"),
