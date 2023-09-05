@@ -19,13 +19,13 @@ import javax.ws.rs.HttpMethod;
 public class SecurityAutoConfiguration {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, AdminServerProperties adminServer, ServerProperties serverProperties) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, AdminServerProperties adminServer) throws Exception {
         http.authorizeRequests(
                 (authorizeRequests) ->
                     authorizeRequests.antMatchers(adminServer.path("/assets/**")).permitAll()
-                                                        .antMatchers(adminServer.path("/actuator/info")).permitAll()
-                                                        .antMatchers(adminServer.path("/actuator/health")).permitAll()
-                                                        .antMatchers(adminServer.path("/login_oauth2")).permitAll().anyRequest().authenticated()
+                                     .antMatchers("/actuator/info", "/actuator/health").permitAll()
+                                     .antMatchers(adminServer.path("/login_oauth2")).permitAll()
+                                     .anyRequest().authenticated()
             ).oauth2Login(
                 login ->
                     login.defaultSuccessUrl(adminServer.path("/"), true)
