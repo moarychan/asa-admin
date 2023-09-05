@@ -1,6 +1,7 @@
 spring:
   boot:
     admin:
+      context-path: /admin
       ui:
         brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
         title: Azure Spring Apps Admin
@@ -35,3 +36,12 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+#management:
+##  # AADSTS50011: redirect URI 'http://localhost:8088/mgmt/login/oauth2/code/' specified in the request
+##  # does not match the redirect URIs configured for the application
+#  server:
+#    base-path: /mgmt3
+#    port: 8088
+
+debug: on
