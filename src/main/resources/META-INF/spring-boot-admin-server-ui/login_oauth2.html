@@ -11,6 +11,11 @@
             th:href="${uiSettings.favicon}"
             type="image/png"
     />
+    <script th:inline='javascript'>
+        var csrf = /*[[${_csrf}]]*/ {};
+        var uiSettings = /*[[${uiSettings}]]*/ {};
+        var param = /*[[${param}]]*/ {};
+    </script>
     <title th:text="${uiSettings.title}">Azure Spring Apps Spring Boot Admin - Login</title>
     <link href="assets/css/chunk-common.768fcb31.css" rel="stylesheet" />
 </head>

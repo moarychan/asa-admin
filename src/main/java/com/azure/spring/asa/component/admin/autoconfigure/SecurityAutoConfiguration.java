@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInit
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
@@ -45,6 +46,7 @@ public class SecurityAutoConfiguration {
             ).logout((logout) -> logout.logoutUrl(adminServer.path("/logout"))
                                        .logoutSuccessHandler(logoutSuccessHandler))
             .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                                 .ignoringRequestMatchers(
                                     new AntPathRequestMatcher(adminServer.path("/instances"),
                                         HttpMethod.POST.toString()),

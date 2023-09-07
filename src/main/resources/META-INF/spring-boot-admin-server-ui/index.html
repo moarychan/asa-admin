@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class='h-full'>
+<head>
+    <base href='/' th:href='${baseUrl}' />
+    <meta charset='utf-8' />
+    <title th:text='${uiSettings.title}'>Spring Boot Admin</title>
+    <link
+            rel='shortcut icon'
+            th:href='${uiSettings.favicon}'
+            type='image/png'
+    />
+    <meta content='width=device-width, initial-scale=1' name='viewport' />
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+    <meta content='telephone=no,email=no' name='format-detection' />
+    <meta
+            content='#42d3a5'
+            name='theme-color'
+            th:content='${uiSettings.theme.color}'
+    />
+
+
+    <link href='./variables.css' rel='stylesheet' />
+
+    <link
+            as='style'
+            rel='preload'
+            th:each='cssExtension : ${cssExtensions}'
+            th:href="'extensions/' + ${cssExtension.resourcePath}"
+    />
+
+    <link
+            rel='stylesheet'
+            th:each='cssExtension : ${cssExtensions}'
+            th:href="'extensions/' + ${cssExtension.resourcePath}"
+    />
+    <script lang='javascript' src='sba-settings.js'></script>
+    <link
+            as='script'
+            rel='prefetch'
+            th:each='jsExtension : ${jsExtensions}'
+            th:src="'extensions/' + ${jsExtension.resourcePath}"
+    />
+    <script th:inline='javascript'>
+        var csrf = /*[[${_csrf}]]*/ {};
+    </script>
+    <script type="module" crossorigin src="./assets/sba-3ebd0d30.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/index-52fa267b.js">
+    <link rel="stylesheet" href="./assets/index-0fa25697.css">
+    <link rel="stylesheet" href="./assets/index-1813ebbb.css">
+</head>
+<body class='h-full'>
+<div id='app'></div>
+
+
+</body>
+</html>
