@@ -17,35 +17,91 @@
         var param = /*[[${param}]]*/ {};
     </script>
     <title th:text="${uiSettings.title}">Azure Spring Apps Spring Boot Admin - Login</title>
-    <link href="assets/css/chunk-common.768fcb31.css" rel="stylesheet" />
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            background: rgba(0, 0, 0, .8);
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content-container {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 24px 20px 20px 20px;
+        }
+        .icon {
+            height: 120px;
+            width: 120px;
+        }
+        .icon-container {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .title {
+            color: #42d3a5;
+            font-size: 30px;
+            margin-top: 12px;
+            margin-bottom: 0;
+            font-family: Arial;
+        }
+        .title-desc {
+            margin-top: 30px;
+            margin-bottom: 0;
+            color: #42d3a5;
+            font-size: 16px;
+            text-align: center;
+            font-family: Arial;
+            font-weight: 300;
+        }
+        .button {
+            margin-top: 20px;
+            color: #ffffff;
+            background-color: #42d3a5;
+            border: none;
+            padding: 16px 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body class="login">
-<section class="hero is-fullheight">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <div class="column is-4 is-offset-4">
-                <div class="box">
-                    <figure class="image is-128x128 login--logo">
+<body>
+<section class="content-container">
+    <div>
+        <div>
+            <div>
+                <div>
+                    <figure class="icon-container">
                         <img
+                            class="icon"
                             th:attr="src=${uiSettings.loginIcon}"
                             src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"
                         />
                     </figure>
-                    <h1 class="title has-text-primary" th:text="${uiSettings.title}">
+                    <h1 class="title" th:text="${uiSettings.title}">
                         Azure Spring Apps - Spring Boot Admin
                     </h1>
-                    <h1 class="has-text-primary" style="margin-bottom: 1rem;">
+                    <h1 class="title-desc">
                         Login with OAuth 2.0
                     </h1>
                     <div class="field">
                         <p class="is-medium" th:unless="${logoutSuccess == null}" data-i18n="login.logout_successful">Logout successful</p>
                         <p class="is-medium has-text-danger" th:unless="${session.SPRING_SECURITY_LAST_EXCEPTION == null}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION}">Get error</p>
                     </div>
-                    <div class="field" th:each="oAuthClient : ${oAuthClientList}">
-                        <div class="control">
+                    <div th:each="oAuthClient : ${oAuthClientList}">
+                        <div>
                             <input type="submit"
                                    th:value="${oAuthClient.clientName}"
-                                   class="button is-block is-primary is-medium is-fullwidth" th:onclick="redictToOAuthUrl([[${oAuthClient.redirectUrl}]])"/>
+                                   class="button" th:onclick="redictToOAuthUrl([[${oAuthClient.redirectUrl}]])"/>
                         </div>
                     </div>
                 </div>
