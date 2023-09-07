@@ -1,6 +1,7 @@
 spring:
   boot:
     admin:
+      context-path: /admin
       ui:
         brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
         title: Azure Spring Apps Admin
