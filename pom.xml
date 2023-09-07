@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.12</version>
+        <version>3.0.10</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.azure.spring</groupId>
@@ -13,10 +13,10 @@
     <name>asa-component-boot-admin-server</name>
     <description>ASA Component of Spring Boot Admin</description>
     <properties>
-        <java.version>11</java.version>
-        <spring-boot-admin.version>2.7.4</spring-boot-admin.version>
-        <spring-cloud.version>2021.0.7</spring-cloud.version>
-        <spring-cloud-azure.version>4.10.0</spring-cloud-azure.version>
+        <java.version>17</java.version>
+        <spring-boot-admin.version>3.0.4</spring-boot-admin.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
+        <spring-cloud-azure.version>5.5.0</spring-cloud-azure.version>
     </properties>
 
     <dependencies>

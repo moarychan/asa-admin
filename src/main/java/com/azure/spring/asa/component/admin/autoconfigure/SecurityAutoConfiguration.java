@@ -8,14 +8,13 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.ws.rs.HttpMethod;
 
 @Configuration(proxyBeanMethods = false)
 public class SecurityAutoConfiguration {
@@ -34,9 +33,9 @@ public class SecurityAutoConfiguration {
         logoutSuccessHandler.setPostLogoutRedirectUri(contextPath + adminServer.path("/login_oauth2") + "?logoutSuccess=1");
         http.authorizeRequests(
                 (authorizeRequests) ->
-                    authorizeRequests.antMatchers(adminServer.path("/assets/**")).permitAll()
-                                     .antMatchers("/actuator/info", "/actuator/health").permitAll()
-                                     .antMatchers(adminServer.path("/login_oauth2")).permitAll()
+                    authorizeRequests.requestMatchers(adminServer.path("/assets/**")).permitAll()
+                                     .requestMatchers("/actuator/info", "/actuator/health").permitAll()
+                                     .requestMatchers(adminServer.path("/login_oauth2")).permitAll()
                                      .anyRequest().authenticated()
             ).oauth2Login(
                 login ->

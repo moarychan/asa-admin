@@ -6,6 +6,7 @@ import de.codecentric.boot.admin.server.ui.config.AdminServerUiProperties;
 import de.codecentric.boot.admin.server.ui.extensions.UiRoutesScanner;
 import de.codecentric.boot.admin.server.ui.web.UiController;
 import de.codecentric.boot.admin.server.web.AdminController;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.ResolvableType;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
