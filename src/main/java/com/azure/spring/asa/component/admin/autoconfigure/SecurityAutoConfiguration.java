@@ -42,7 +42,8 @@ public class SecurityAutoConfiguration {
                     login.defaultSuccessUrl(adminServer.path("/"), true)
                          .authorizationEndpoint(authorization -> authorization.baseUri(adminServer.path("/oauth2/authorization")))
                          .loginPage(adminServer.path("/login_oauth2"))
-            ).logout((logout) -> logout.logoutUrl(adminServer.path("/logout")).logoutSuccessHandler(logoutSuccessHandler))
+            ).logout((logout) -> logout.logoutUrl(adminServer.path("/logout"))
+                                       .logoutSuccessHandler(logoutSuccessHandler))
             .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                                 .ignoringRequestMatchers(
                                     new AntPathRequestMatcher(adminServer.path("/instances"),

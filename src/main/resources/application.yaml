@@ -13,8 +13,8 @@ spring:
         favicon: assets/img/azure-favicon.png
         favicon-danger: assets/img/azure-favicon.png
         login-icon: assets/img/10370-icon-service-Azure-Spring-Apps.svg
-      discovery:
-        ignored-services: eureka-0,eureka-1,EUREKA-0,EUREKA-1
+#      discovery:
+#        ignored-services: eureka-0,eureka-1,EUREKA-0,EUREKA-1
   cloud:
     azure:
       active-directory:
