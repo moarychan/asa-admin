@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base th:href="${baseUrl}" href="/" />
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="format-detection" content="telephone=no,email=no" />
-    <meta name="theme-color" content="#42d3a5" />
+    <base href='/' th:href='${baseUrl}' />
+    <meta charset='utf-8' />
+    <meta content='width=device-width, initial-scale=1' name='viewport' />
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+    <meta content='telephone=no,email=no' name='format-detection' />
+    <meta content='#42d3a5' name='theme-color' />
     <link
             rel="shortcut icon"
             th:href="${uiSettings.favicon}"
@@ -72,6 +73,13 @@
             font-size: 18px;
             border-radius: 4px;
         }
+        .is-medium {
+            text-align: center;
+        }
+        .has-text-danger {
+            text-align: center;
+            color: #ff3860;
+        }
     </style>
 </head>
 <body>
@@ -101,7 +109,7 @@
                         <div>
                             <input type="submit"
                                    th:value="${oAuthClient.clientName}"
-                                   class="button" th:onclick="redictToOAuthUrl([[${oAuthClient.redirectUrl}]])"/>
+                                   class="button" th:onclick="redirectToOAuthUrl([[${oAuthClient.redirectUrl}]])"/>
                         </div>
                     </div>
                 </div>
@@ -110,14 +118,8 @@
     </div>
 </section>
 
-
-
-<script src="assets/js/chunk-vendors.463607ac.js"></script>
-<script src="assets/js/chunk-common.2a7fad50.js"></script>
-<script src="assets/js/login.2238b495.js"></script>
-
 <script th:inline="javascript">
-    function redictToOAuthUrl(url) {
+    function redirectToOAuthUrl(url) {
         var modifiedUrl = null;
         if(url.startsWith("/")) {
             modifiedUrl = url.substring(1);
