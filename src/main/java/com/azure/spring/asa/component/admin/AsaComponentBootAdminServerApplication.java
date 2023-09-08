@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableAdminServer
-@EnableDiscoveryClient(autoRegister = false)
+@EnableDiscoveryClient
 public class AsaComponentBootAdminServerApplication {
 
 	public static void main(String[] args) {
