@@ -1,10 +1,10 @@
-server:
-  servlet:
-    context-path: /asaa
+#server:
+#  servlet:
+#    context-path: /asaa
 spring:
   boot:
     admin:
-      context-path: /admin
+#      context-path: /admin
       ui:
         brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
         title: Azure Spring Apps Admin
@@ -36,6 +36,8 @@ spring:
     name: asa-spring-boot-admin-server
 
 eureka:
+  instance:
+    secure-port-enabled: true
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
