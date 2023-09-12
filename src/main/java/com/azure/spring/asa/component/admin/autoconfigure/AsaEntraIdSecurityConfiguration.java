@@ -1,9 +1,10 @@
 package com.azure.spring.asa.component.admin.autoconfigure;
 
+import com.azure.spring.asa.component.admin.autoconfigure.properties.AsaAdminProperties;
 import com.azure.spring.asa.component.admin.web.LoginController;
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import de.codecentric.boot.admin.server.ui.config.AdminServerUiProperties;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -17,20 +18,21 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
-public class SecurityAutoConfiguration {
+@ConditionalOnProperty(value = "spring.cloud.azure.admin.entra-id.enabled", havingValue = "true")
+public class AsaEntraIdSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    AdminServerProperties adminServer,
                                                    ClientRegistrationRepository repo,
-                                                   @Value("${fully_qualified_domain_name}") String fqdn) throws Exception {
+                                                   AsaAdminProperties adminProperties) throws Exception {
         OidcClientInitiatedLogoutSuccessHandler logoutSuccessHandler =
             new OidcClientInitiatedLogoutSuccessHandler(repo);
-        StringBuilder contextPath = new StringBuilder(fqdn);
-        if (contextPath.charAt(contextPath.length() - 1) == '/') {
-            contextPath.deleteCharAt(contextPath.length() - 1);
+        StringBuilder fqdn = new StringBuilder(adminProperties.getFullyQualifiedDomainName());
+        if (fqdn.charAt(fqdn.length() - 1) == '/') {
+            fqdn.deleteCharAt(fqdn.length() - 1);
         }
-        logoutSuccessHandler.setPostLogoutRedirectUri(contextPath + adminServer.path("/login_oauth2") + "?logoutSuccess=1");
+        logoutSuccessHandler.setPostLogoutRedirectUri(fqdn + adminServer.path("/login_oauth2") + "?logoutSuccess=1");
         http.authorizeRequests(
                 (authorizeRequests) ->
                     authorizeRequests.antMatchers(adminServer.path("/assets/**")).permitAll()

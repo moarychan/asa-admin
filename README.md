@@ -8,7 +8,7 @@ This repository maintains a customized Spring Boot Admin Server - **Azure Spring
 
 # What's the benefit of Azure Spring Apps Admin
 
-1. Integrated with Azure Active Directory to secure your dashboard
+1. Integrated with Microsoft Entra ID (Original name: Azure AD) to secure your dashboard
 2. Easily deploy with one click Azure Spring Apps button instead of multiple Azure commands
 3. Fully compatible with community Spring Boot Admin
 
@@ -17,10 +17,11 @@ This repository maintains a customized Spring Boot Admin Server - **Azure Spring
 To deploy Spring Boot Admin to Azure Spring Apps using the Azure Spring Apps button, you need below prerequisites:
 
 - An Azure subscription
-- An Azure AD administrative roles user
-- Azure Service Principal client id to enable Azure Active Directory - Adding AAD_CLIENT_ID environment variable
-- Azure Service Principal client secret to enable Azure Active Directory - Adding AAD_CLIENT_SECRET environment variable
-- Azure Service Principal tenant id to enable Azure Active Directory - Adding AAD_TENANT_ID environment variable
+- A Microsoft Entra ID administrative roles user
+- Azure Service Principal client id to enable Microsoft Entra ID - Adding AAD_CLIENT_ID environment variable
+- Azure Service Principal client secret to enable Microsoft Entra ID - Adding AAD_CLIENT_SECRET environment variable
+- Azure Service Principal tenant id to enable Microsoft Entra ID - Adding AAD_TENANT_ID environment variable
+- An application URL exposed by Azure Spring Apps to integrate authentication with Microsoft Entra ID - Adding FULLY_QUALIFIED_DOMAIN_NAME environment variable
 
 Then, you can run this Azure Spring Apps Admin by one click button:
 

@@ -1,6 +1,10 @@
+server:
+  servlet:
+    context-path: /asaa
 spring:
   boot:
     admin:
+      context-path: /admin
       ui:
         brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
         title: Azure Spring Apps Admin
@@ -13,6 +17,7 @@ spring:
         favicon: assets/img/azure-favicon.png
         favicon-danger: assets/img/azure-favicon.png
         login-icon: assets/img/10370-icon-service-Azure-Spring-Apps.svg
+#        publicUrl: ${spring.cloud.azure.admin.fully-qualified-domain-name}
   cloud:
     azure:
       active-directory:
@@ -22,12 +27,13 @@ spring:
           client-secret: ${AAD_CLIENT_SECRET}
           profile:
             tenant-id: ${AAD_TENANT_ID}
+      admin:
+        fully-qualified-domain-name: ${FULLY_QUALIFIED_DOMAIN_NAME:http://localhost:8080}
+
   thymeleaf:
     check-template-location: false
   application:
     name: asa-spring-boot-admin-server
-
-server.port: 8080
 
 eureka:
   client:
@@ -38,5 +44,3 @@ management:
     web:
       exposure:
         include: info,health
-
-fully_qualified_domain_name: ${FULLY_QUALIFIED_DOMAIN_NAME:http://localhost:8080}
