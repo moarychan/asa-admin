@@ -1,10 +1,7 @@
-server:
-  servlet:
-    context-path: /asaa
 spring:
   boot:
     admin:
-      context-path: /admin
+      context-path: ${ADMIN_CONTEXTPATH:/admin}
       ui:
         brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
         title: Azure Spring Apps Admin
@@ -22,6 +19,7 @@ spring:
     azure:
       active-directory:
         enabled: true
+        redirect-uri-template: "{baseUrl}${spring.boot.admin.context-path}/login/oauth2/code/"
         credential:
           client-id: ${AAD_CLIENT_ID}
           client-secret: ${AAD_CLIENT_SECRET}
