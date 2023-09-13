@@ -33,6 +33,9 @@ spring:
     name: asa-spring-boot-admin-server
 
 eureka:
+  instance:
+    # Set true to the consumption plan instance, set false to the standard plan.
+    secure-port-enabled: true
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
