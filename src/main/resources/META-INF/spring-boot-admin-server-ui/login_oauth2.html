@@ -40,7 +40,7 @@
                         <div class="control">
                             <input type="submit"
                                    th:value="${oAuthClient.clientName}"
-                                   class="button is-block is-primary is-medium is-fullwidth" th:onclick="redictToOAuthUrl([[${oAuthClient.redirectUrl}]])"/>
+                                   class="button is-block is-primary is-medium is-fullwidth" th:onclick="redirectToOAuthUrl([[${oAuthClient.redirectUrl}]])"/>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
 <script src="assets/js/login.2238b495.js"></script>
 
 <script th:inline="javascript">
-    function redictToOAuthUrl(url) {
+    function redirectToOAuthUrl(url) {
         var modifiedUrl = null;
         if(url.startsWith("/")) {
             modifiedUrl = url.substring(1);
