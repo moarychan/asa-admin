@@ -1,7 +1,7 @@
 spring:
   boot:
     admin:
-      context-path: ${ADMIN_CONTEXTPATH:/admin}
+#      context-path: ${ADMIN_CONTEXTPATH:/admin}
       ui:
         brand: <img src="assets/img/10370-icon-service-Azure-Spring-Apps.svg"><span>Azure Spring Apps Admin</span>
         title: Azure Spring Apps Admin
@@ -14,12 +14,11 @@ spring:
         favicon: assets/img/azure-favicon.png
         favicon-danger: assets/img/azure-favicon.png
         login-icon: assets/img/10370-icon-service-Azure-Spring-Apps.svg
-#        publicUrl: ${spring.cloud.azure.admin.fully-qualified-domain-name}
   cloud:
     azure:
       active-directory:
         enabled: true
-        redirect-uri-template: "{baseUrl}${spring.boot.admin.context-path}/login/oauth2/code/"
+#        redirect-uri-template: "{baseUrl}${spring.boot.admin.context-path}/login/oauth2/code/"
         credential:
           client-id: ${AAD_CLIENT_ID}
           client-secret: ${AAD_CLIENT_SECRET}

@@ -53,7 +53,7 @@ public class AsaEntraIdSecurityConfiguration {
                     login.defaultSuccessUrl(adminServerProperties.path("/"), true)
                          .authorizationEndpoint(authorization -> authorization.baseUri(adminServerProperties.path("/oauth2/authorization")))
                          .loginPage(adminServerProperties.path("/login_oauth2"))
-                         .loginProcessingUrl(adminServerProperties.path("/login/oauth2/code/"))
+//                         .loginProcessingUrl(adminServerProperties.path("/login/oauth2/code/"))
                          .tokenEndpoint().accessTokenResponseClient(accessTokenResponseClient(repo, restTemplateBuilder))
             ).logout((logout) -> logout.logoutUrl(adminServerProperties.path("/logout")).logoutSuccessHandler(logoutSuccessHandler))
             .csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
