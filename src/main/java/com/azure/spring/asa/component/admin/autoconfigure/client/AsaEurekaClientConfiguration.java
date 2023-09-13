@@ -14,17 +14,17 @@ import java.util.Map;
 import static org.springframework.cloud.commons.util.IdUtils.getDefaultInstanceId;
 
 @Configuration(proxyBeanMethods = false)
-public class EurekaClientConfiguration {
+public class AsaEurekaClientConfiguration {
 
     private final ConfigurableEnvironment env;
 
-    public EurekaClientConfiguration(ConfigurableEnvironment env) {
+    public AsaEurekaClientConfiguration(ConfigurableEnvironment env) {
         this.env = env;
     }
 
     @Bean
     public ManagementMetadataProvider serviceManagementMetadataProvider() {
-        return new AsaAdminDefaultManagementMetadataProvider();
+        return new AsaDefaultManagementMetadataProvider();
     }
 
     private String getProperty(String property) {

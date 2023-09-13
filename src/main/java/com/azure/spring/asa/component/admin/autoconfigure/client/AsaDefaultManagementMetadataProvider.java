@@ -12,14 +12,14 @@ import org.springframework.cloud.netflix.eureka.metadata.ManagementMetadataProvi
 import org.springframework.util.StringUtils;
 
 /**
- * Default implementation of {@link AsaAdminDefaultManagementMetadataProvider}.
+ * Default implementation of {@link AsaDefaultManagementMetadataProvider}.
  *
  */
-public class AsaAdminDefaultManagementMetadataProvider implements ManagementMetadataProvider {
+public class AsaDefaultManagementMetadataProvider implements ManagementMetadataProvider {
 
 	private static final int RANDOM_PORT = 0;
 
-	private static final Log log = LogFactory.getLog(AsaAdminDefaultManagementMetadataProvider.class);
+	private static final Log log = LogFactory.getLog(AsaDefaultManagementMetadataProvider.class);
 
 	@Override
 	public ManagementMetadata get(EurekaInstanceConfigBean instance, int serverPort, String serverContextPath,
