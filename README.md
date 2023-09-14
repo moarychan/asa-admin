@@ -6,7 +6,7 @@ Spring Boot Admin Server is an application for managing and monitoring microserv
 
 This repository maintains a customized Spring Boot Admin Server - **Azure Spring Apps Admin**, which did some enhancements beyond community Spring Boot Admin.
 
-# What's the benefit of Azure Spring Apps Admin
+# What's the benefit of ASA components Spring Boot Admin
 
 1. Support integration with Microsoft Entra ID (Original name: Azure AD) to secure your dashboard.
 2. Support on-click Azure Spring Apps button for easy deployment without using multiple Azure commands.
@@ -14,21 +14,21 @@ This repository maintains a customized Spring Boot Admin Server - **Azure Spring
 
 # Run Azure Spring Apps Admin on Azure Spring Apps
 
-Azure Spring Apps Admin provides two usage methods. 
+ASA components Spring Boot Admin provides two usage methods. 
 By default, the Spring Boot Admin application is not protected, 
 and Microsoft Entra ID protection can also be enabled by switching `spring.cloud.azure.admin.entra-id.enabled`.
 
-## Deploy unprotected components to Azure Spring Apps
+## Deploy unprotected Spring Boot Admin to Azure Spring Apps
 
 To deploy an unprotected component, you only need an Azure subscription, and then you can run this Azure Spring Apps Admin with one click button:
 
-<a href="https://yonghui-apps-dev-nubesgen.azuremicroservices.io/deploy.html?url=https://github.com/fangjian0423/asa-admin" data-linktype="external">
+<a href="https://aka.ms/spring/asa-button?url=https://github.com/fangjian0423/asa-admin" data-linktype="external">
 <img src="https://user-images.githubusercontent.com/58474919/236122963-8c0857bb-3822-4485-892a-445fa33f1612.png" alt="Deploy to Azure Spring Apps" width="200px" data-linktype="relative-path">
 </a>
 
 Once the deployment is complete, you will redirect the application endpoint, then you can access the Spring Boot Admin dashboard.
 
-## Deploy the component integrated with Microsoft Entra ID to Azure Spring Apps
+## Deploy the Spring Boot Admin integrated with Microsoft Entra ID to Azure Spring Apps
 
 To integrate with Microsoft Entra ID and deploy Spring Boot Admin to Azure Spring Apps using the Azure Spring Apps button, you need below prerequisites:
 
@@ -39,9 +39,9 @@ To integrate with Microsoft Entra ID and deploy Spring Boot Admin to Azure Sprin
 - Microsoft Entra ID registration application client secret to enable Microsoft Entra ID - Adding `AAD_CLIENT_SECRET` environment variable
 - Microsoft Entra ID registration application tenant id to enable Microsoft Entra ID - Adding `AAD_TENANT_ID` environment variable
 
-Then, you can run this Azure Spring Apps Admin with one click button:
+Then, you can run this Spring Boot Admin with one click button:
 
-<a href="https://yonghui-apps-dev-nubesgen.azuremicroservices.io/deploy.html?url=https://github.com/fangjian0423/asa-admin" data-linktype="external">
+<a href="https://aka.ms/spring/asa-button?url=https://github.com/fangjian0423/asa-admin" data-linktype="external">
 <img src="https://user-images.githubusercontent.com/58474919/236122963-8c0857bb-3822-4485-892a-445fa33f1612.png" alt="Deploy to Azure Spring Apps" width="200px" data-linktype="relative-path">
 </a>
 
@@ -62,6 +62,11 @@ After everything deploy successful, managing and monitoring your apps via Azure 
 ![](assets/dashboard.png)
 
 ## Troubleshooting
+
+### Why the Azure Spring Apps managed Eureka component status is down
+
+The Eureka instances are fully managed components by Azure Spring Apps. The `down` status does not really indicate a problem, 
+In order to ensure Eureka security, the interface access of its actuator is not open, so its status cannot be detected.
 
 ### OAuth2 login failed when configured the property `spring.boot.admin.context-path`
 

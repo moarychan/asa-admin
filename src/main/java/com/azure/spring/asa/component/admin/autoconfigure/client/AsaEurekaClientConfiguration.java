@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.springframework.cloud.commons.util.IdUtils.getDefaultInstanceId;
 
 /**
- * Enhanced implementation of {@link EurekaClientAutoConfiguration}, it's compatible with Azure Spring Apps.
+ * Enhanced implementation of {@link EurekaClientAutoConfiguration}, it's compatible with Azure Spring Apps Standard consumption and dedicated.
  */
 @Configuration(proxyBeanMethods = false)
 public class AsaEurekaClientConfiguration {

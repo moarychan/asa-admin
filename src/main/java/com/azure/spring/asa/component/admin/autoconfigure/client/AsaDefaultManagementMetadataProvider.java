@@ -13,7 +13,7 @@ import org.springframework.cloud.netflix.eureka.metadata.ManagementMetadataProvi
 import org.springframework.util.StringUtils;
 
 /**
- * Enhanced implementation of {@link DefaultManagementMetadataProvider}, it's compatible with Azure Spring Apps.
+ * Enhanced implementation of {@link DefaultManagementMetadataProvider}, it's compatible with Azure Spring Apps Standard consumption and dedicated.
  */
 public class AsaDefaultManagementMetadataProvider implements ManagementMetadataProvider {
 
