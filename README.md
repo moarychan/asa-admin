@@ -48,7 +48,7 @@ Then, you can run this Azure Spring Apps Admin with one click button:
 Once the deployment is complete, you will redirect the application endpoint, but you will not be able to log in successfully, which requires further configuration below.
 
 Use the following steps to update configuration to integrate the newly generated FQDN:
-- Update the redirect uri in the Microsoft Entra ID registration application, the format is union `application url`, `admin context path` and `/admin/login/oauth2/code/`, such as `https://<app-name>.xxx.xxx.azurecontainerapps.io/admin/login/oauth2/code/`.
+- Update the redirect uri in the Microsoft Entra ID registration application, the format is union `application url`, and `/login/oauth2/code/`, such as `https://<app-name>.xxx.xxx.azurecontainerapps.io/login/oauth2/code/`.
 - Update the `FULLY_QUALIFIED_DOMAIN_NAME` environment variable for Spring Boot Admin app, which does not include the Spring Boot Admin's context path, such as `https://<app-name>.xxx.xxx.azurecontainerapps.io`.
 
 After the above steps are completed, refresh the Spring boot Admin login page, then to do OAuth2 login.
@@ -60,3 +60,15 @@ If you meet below error, please refer [Add a redirect URI](https://learn.microso
 After everything deploy successful, managing and monitoring your apps via Azure Spring Apps Admin.
 
 ![](assets/dashboard.png)
+
+## Troubleshooting
+
+### OAuth2 login failed when configured the property `spring.boot.admin.context-path`
+
+Assuming you configure the property `spring.boot.admin.context-path=/admin`, then you need to perform the following modifications simultaneously:
+
+- Modify the Java configuration, find the bean `SecurityFilterChain` in class `AsaEntraIdSecurityConfiguration`, and open the comment line `loginProcessingUrl(adminServerProperties.path("/login/oauth2/code/"))`. 
+- Modify the application configuration file, find the prefix `spring.cloud.azure.active-directory`, and open the comment line `redirect-uri-template: "{baseUrl}${spring.boot.admin.context-path}/login/oauth2/code/"`. 
+- Modify the redirect uri in the Microsoft Entra ID registration application, the format is union `application url`, `admin context path` and `/login/oauth2/code/`, such as `https://<app-name>.xxx.xxx.azurecontainerapps.io/admin/login/oauth2/code/`.
+
+No need to modify the environment variable `FULLY_QUALIFIED_DOMAIN_NAME`. It's required to redeploy the Azure Spring Apps Admin component.
